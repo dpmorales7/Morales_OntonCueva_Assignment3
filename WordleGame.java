@@ -41,22 +41,17 @@ public class WordleGame {
 	
 	public String MakeGuess(String guess) {
 		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.println("Enter your guess: ");
-		String word = scan.nextLine();
-		
-		return word;
+		Dictionary dic = new Dictionary();
+		String secret_word = dic.getRandomWord();
+
 		
 	}
 	
 	public String getSecretWord() {
 		
-		Random rand = new Random();
-		int number = rand.nextInt(8);
-		
-		String secret_word = words.get(number);
-		
+		Dictionary dic = new Dictionary();
+		String secret_word = dic.getRandomWord();
+
 		return secret_word;
 		
 	}
