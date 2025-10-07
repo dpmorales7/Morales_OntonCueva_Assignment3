@@ -43,11 +43,31 @@ public class WordleGame {
 	}
 	
 	public String MakeGuess(String guess) {
-		
-		Dictionary dic = new Dictionary(this.words);
-		String secret_word = dic.getRandomWord();
 
-		return secret_word;	
+		Dictionary dic = new Dictionary(this.words);
+		
+		boolean not_valid = true;
+
+		while (not_valid){
+			Scanner scan = new Scanner(System.in);
+
+
+			System.out.println("Enter your guess: ");
+
+
+			String word = scan.nextLine();
+
+			if(dic.isValidWord(word)){
+				not_valid = false;
+			}else{
+				System.out.println("Word not in list.");
+			}
+
+
+		}
+
+
+		return word;
 	}
 	
 	public String getSecretWord() {
@@ -76,3 +96,4 @@ public class WordleGame {
 		
 	}
 }
+
