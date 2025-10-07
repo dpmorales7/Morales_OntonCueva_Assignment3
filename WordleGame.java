@@ -100,7 +100,7 @@ public class WordleGame {
 	public static void main(String[] args) {
 		WordleGame game = new WordleGame();
 		game.startGame();
-		while((game.isGameOver())){
+		while(!(game.isGameOver())){
 			game.MakeGuess();
 			System.out.println(game.guesses);
 			System.out.println(game.secretWord);
