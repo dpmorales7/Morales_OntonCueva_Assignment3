@@ -1,6 +1,9 @@
 
 public class Feedback {
 
+
+	
+
 	
 	
 	public static HashMap getPatter(String guess, String secretWord) {
@@ -66,13 +69,13 @@ public class Feedback {
 
 	public static boolean isCorrect(HashMap guesses, String guess){
 
-		String colors = guesses[guess];
+		String colors = guesses.get(guess);
 
-		if (colors == "GGGGG"){
-			return True;
+		if (colors.equals("GGGGG")){
+			return true;
 		}
 
-		return False;
+		return false;
 		
 		
 	}
@@ -82,4 +85,5 @@ public class Feedback {
 	
 	
 }
+
 
