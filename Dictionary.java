@@ -1,15 +1,46 @@
 
+import java.io.File;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Dictionary {
 
 	ArrayList<String> words;
+	String secretWord;
 
-	public Dictionary(ArrayList<String> list) {
+	public Dictionary() {
 
-		this.words = list;
+		this.words = addWords();
 
+		this.secretWord = getRandomWord();
+
+	}
+
+	public ArrayList<String> addWords() {
+		ArrayList<String> contents = new ArrayList<>();
+		try {
+			File file = new File("words.txt");
+			Scanner input = new Scanner(file);
+
+			while(input.hasNextLine()) {
+
+				String line = input.nextLine();
+				contents.add(line);
+
+			}
+
+			input.close();
+
+
+		} catch (Exception e) {
+
+			System.out.println("There was an error while reading file");
+
+		}
+
+
+		return contents;
 	}
 
 	public boolean isValidWord(String word) {

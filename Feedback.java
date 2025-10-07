@@ -1,32 +1,18 @@
-
+import java.util.HashMap;
 public class Feedback {
 
+	//HashMap<String,String> guesses;
+	String guess;
+	String pattern;
+	boolean Validation;
+	public Feedback(String guess, String secretWord){
+		this.guess = guess;
+		this.pattern = getPattern(guess,secretWord);
+		this.Validation = isCorrect(pattern);
 
-	
-
-	
-	
-	public static HashMap getPatter(String guess, String secretWord) {
-		
-		HashMap<String, String> guesses = new HashMap<>();
-		
-		String colors = compare(guess,secretWord);
-		
-		guesses.put(guess, colors);
-		
-		
-		
-		
-		
-		
-		
-		
-		return guesses;
-		
 	}
-	
-	
-	public static String compare(String guess, String secretWord) {
+
+	public static String getPattern(String guess, String secretWord) {
 		
 		char[] letters = new char[5];
 		
@@ -67,17 +53,28 @@ public class Feedback {
 		
 	}
 
-	public static boolean isCorrect(HashMap guesses, String guess){
+	public static boolean isCorrect( String pattern){
 
-		String colors = guesses.get(guess);
 
-		if (colors.equals("GGGGG")){
+		if (pattern.equals("GGGGG")){
 			return true;
 		}
 
 		return false;
 		
 		
+	}
+
+	public String getGuess(){
+		return guess;
+	}
+
+	public String getPattern(){
+		return pattern;
+	}
+
+	public boolean getValidation(){
+		return Validation;
 	}
 
 	
