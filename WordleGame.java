@@ -3,9 +3,8 @@ import java.util.ArrayList;
 import java.lang.String;
 import java.util.Scanner;
 import java.util.Random;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.File;
 
 public class WordleGame {
 	
@@ -19,20 +18,23 @@ public class WordleGame {
 	
 	public void addWords() {
 		
-		String filePath = "words.txt";
-		
-		try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-			String line;
-			while((line = reader.readLine()) != null) {
-					words.add(line);
+		try {
+			File file = new File("words.txt");
+			Scanner input = new Scanner(file);
+
+			while(input.hasNextLine()) {
+
+				String line = input.nextLine();
+				this.words.add(line);
 				
 			}
-			reader.close();
-		
-		
-		}catch (IOException e) {
-			System.err.println("There was an error while reading file: "+e.getMessage());
 			
+			input.close();
+		
+		
+		} catch (IOException e) {
+
+			System.out.println("There was an error while reading file");
 			
 		}
 		
