@@ -38,21 +38,21 @@ public class WordleGame {
 			
 		}
 		
+		System.out.println(words.size());
 		return this.words;
-		//System.out.println(words.size());
 	}
 	
 	public String MakeGuess(String guess) {
 		
-		Dictionary dic = new Dictionary();
+		Dictionary dic = new Dictionary(this.words);
 		String secret_word = dic.getRandomWord();
 
-		
+		return secret_word;	
 	}
 	
 	public String getSecretWord() {
 		
-		Dictionary dic = new Dictionary();
+		Dictionary dic = new Dictionary(this.words);
 		String secret_word = dic.getRandomWord();
 
 		return secret_word;
@@ -67,7 +67,7 @@ public class WordleGame {
 		WordleGame obj = new WordleGame();
 			
 		//Add words to the Arraylist
-		obj.addWords();
+		ArrayList<String> test = obj.addWords();
 		
 			//
 			
