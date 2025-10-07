@@ -16,7 +16,7 @@ public class WordleGame {
 		
 	}
 	
-	public void addWords() {
+	public ArrayList<String> addWords() {
 		
 		try {
 			File file = new File("words.txt");
@@ -32,13 +32,14 @@ public class WordleGame {
 			input.close();
 		
 		
-		} catch (IOException e) {
+		} catch (Exception e) {
 
 			System.out.println("There was an error while reading file");
 			
 		}
 		
-		System.out.println(words.size());
+		return this.words;
+		//System.out.println(words.size());
 	}
 	
 	public String MakeGuess(String guess) {

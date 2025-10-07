@@ -1,20 +1,29 @@
 
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Dictionary {
+
+	ArrayList<String> words;
+
+	public Dictionary(ArrayList<String> list) {
+
+		this.words = list;
+
+	}
 
 	public boolean isValidWord(String word) {
 
 		for(int i = 0; i < this.words.size(); i++) {
 
-			if(this.words.get(i) == word) {
+			if(this.words.get(i).equals(word)) {
 
 				return true;
 			}
 
-			return false;
-
 		}
+
+		return false;
 
 	}
 
