@@ -12,6 +12,6 @@ Boundary error in game-over – guessNum > 5 ends game after 5 instead of 6 gues
 
 Wrong initial guess count – starts at 1 instead of 0, losing one turn immediately.
 
-Forgot reset – doesn’t reset Validation when starting a new game → could end instantly from old data.
+Forgot reset – doesn’t reset Validation when starting a new game →  could end instantly from old data.
 
 Null check missing – Feedback doesn’t verify secretWord is non-null before accessing characters.
