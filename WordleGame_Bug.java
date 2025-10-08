@@ -1,0 +1,112 @@
+import java.util.ArrayList;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.List;
+public class WordleGame_Bug {
+    int guessNum;
+
+    String guess;
+    String secretWord;
+
+    HashMap guesses;
+
+    boolean Validation;
+
+    public WordleGame_Bug() {
+
+        // BUG 1: forgot to initialize guesses (null pointer later)
+        // this.guesses = new HashMap<String,String>();
+
+    }
+
+    public String MakeGuess() {
+
+        Dictionary dic = new Dictionary();
+
+        boolean not_valid = true;
+
+        String word = "IIIII";
+
+        while (not_valid) {
+            Scanner scan = new Scanner(System.in);
+
+            System.out.println("Enter your guess: ");
+
+            word = scan.nextLine();
+
+            // BUG 2: does not handle uppercase/lowercase properly
+            if (dic.isValidWord(word.toUpperCase())) {
+                not_valid = false;
+            } else {
+                System.out.println("Word not in list.");
+            }
+        }
+
+        // BUG 3: secretWord might still be null if startGame() wasn’t called
+        Feedback feed = new Feedback(word, secretWord);
+
+        // BUG 4: possible NullPointerException because guesses not initialized
+        this.guesses.put(word, feed.getPattern());
+
+        this.Validation = feed.getValidation();
+
+        // BUG 5: off-by-one — should stop after 6 guesses, but increments before check
+        this.guessNum++;
+
+        return word;
+
+    }
+
+    public String getSecretWord() {
+
+        Dictionary dic = new Dictionary();
+
+        return dic.getRandomWord();
+
+    }
+
+    public boolean isGameOver() {
+        // BUG 6: off-by-one error — game ends too early (should be >= 6)
+        if (Validation || guessNum > 5) {
+            return true;
+        }
+        return false;
+    }
+
+    public void startGame() {
+        this.guesses = new HashMap<String, String>();
+
+        this.secretWord = getSecretWord();
+
+        this.guessNum = 1; // BUG 7: starts at 1 instead of 0, losing a guess
+
+        // BUG 8: forgot to reset Validation flag, could carry over from last game
+        // this.Validation = false;
+
+    }
+
+    public static void main(String[] args) {
+        WordleGame game = new WordleGame();
+        game.startGame();
+        System.out.println("Welcome to Wordle");
+        System.out.println("Make a guess and you shall receive a corresponding string as the pattern.");
+        System.out.println("Each letter in the pattern will either be 'G','Y' or 'B'");
+        System.out.println("G = correct letter in correct spot");
+        System.out.println("Y = correct letter in wrong spot");
+        System.out.println("B = letter not in word");
+        System.out.println("You have 6 guesses good luck!");
+        while (!(game.isGameOver())) {
+            System.out.println("_________________________");
+            game.MakeGuess();
+            System.out.println("Number of guesses:" + game.guessNum);
+            List<String> keyList = new ArrayList<>(game.guesses.keySet());
+            List<String> valueList = new ArrayList<>(game.guesses.values());
+            for (int i = 0; i < keyList.size(); i++) {
+                System.out.println(keyList.get(i) + ":" + valueList.get(i));
+            }
+        }
+
+        System.out.println(game.secretWord + " was the secret word.");
+    }
+}

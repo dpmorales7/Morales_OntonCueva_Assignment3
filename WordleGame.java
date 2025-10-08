@@ -3,11 +3,8 @@ import java.util.ArrayList;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Random;
-import java.io.FileNotFoundException;
-import java.io.File;
 import java.util.List;
-import java.util.Map;
+
 
 public class WordleGame {
 
@@ -77,7 +74,7 @@ public class WordleGame {
 	}
 
 	public boolean isGameOver(){
-		if (Validation || guessNum > 6){
+		if (Validation || guessNum > 5){
 			return true;
 		}
 		return false;
@@ -90,7 +87,7 @@ public class WordleGame {
 
 		this.guessNum = 0;
 
-		//this.guess = MakeGuess();
+
 
 
 

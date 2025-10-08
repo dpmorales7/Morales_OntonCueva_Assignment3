@@ -1,4 +1,3 @@
-import java.util.HashMap;
 public class Feedback {
 
 	//HashMap<String,String> guesses;
