@@ -6,6 +6,8 @@ import java.util.Scanner;
 import java.util.Random;
 import java.io.FileNotFoundException;
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 public class WordleGame {
 
@@ -61,7 +63,6 @@ public class WordleGame {
 
 		this.guessNum ++;
 
-		System.out.println(guessNum);
 
 		return word;
 
@@ -100,16 +101,27 @@ public class WordleGame {
 	public static void main(String[] args) {
 		WordleGame game = new WordleGame();
 		game.startGame();
+		System.out.println("Welcome to Wordle");
+		System.out.println("Make a guess and you shall receive a corrisponding string as the pattern.");
+		System.out.println("Each letter in the pattern will either be 'G','Y' or 'B");
+		System.out.println("G = correct letter in correct spot");
+		System.out.println("Y = correct letter in wrong spot");
+		System.out.println("B = letter not in word");
+		System.out.println("You have 6 guesses good luck!");
 		while(!(game.isGameOver())){
+			System.out.println("_________________________");
 			game.MakeGuess();
-			System.out.println(game.guesses);
-			System.out.println(game.secretWord);
+			System.out.println("Number of guesses:" + game.guessNum);
+			List<String> keyList = new ArrayList<>(game.guesses.keySet());
+			List<String> valueList = new ArrayList<>(game.guesses.values());
+			for(int i = 0; i < keyList.size();i++){
+				System.out.println(keyList.get(i)+":"+valueList.get(i));
+			}
+
+
 		}
 
-		System.out.println(game.guess);
-		System.out.println(game.secretWord);
-		System.out.println(game.guesses);
-		System.out.println(game.Validation);
+		System.out.println(game.secretWord+" was the secret word.");
 
 
 
