@@ -15,8 +15,7 @@ public class WordleGame_Bug {
 
     public WordleGame_Bug() {
 
-        // BUG 1: forgot to initialize guesses (null pointer later)
-        // this.guesses = new HashMap<String,String>();
+       
 
     }
 
@@ -35,7 +34,7 @@ public class WordleGame_Bug {
 
             word = scan.nextLine();
 
-            // BUG 2: does not handle uppercase/lowercase properly
+            
             if (dic.isValidWord(word.toUpperCase())) {
                 not_valid = false;
             } else {
@@ -43,15 +42,15 @@ public class WordleGame_Bug {
             }
         }
 
-        // BUG 3: secretWord might still be null if startGame() wasn’t called
+        
         Feedback feed = new Feedback(word, secretWord);
 
-        // BUG 4: possible NullPointerException because guesses not initialized
+        
         this.guesses.put(word, feed.getPattern());
 
         this.Validation = feed.getValidation();
 
-        // BUG 5: off-by-one — should stop after 6 guesses, but increments before check
+        
         this.guessNum++;
 
         return word;
@@ -67,7 +66,7 @@ public class WordleGame_Bug {
     }
 
     public boolean isGameOver() {
-        // BUG 6: off-by-one error — game ends too early (should be >= 6)
+       
         if (Validation || guessNum > 5) {
             return true;
         }
@@ -79,10 +78,9 @@ public class WordleGame_Bug {
 
         this.secretWord = getSecretWord();
 
-        this.guessNum = 1; // BUG 7: starts at 1 instead of 0, losing a guess
+        this.guessNum = 1; 
 
-        // BUG 8: forgot to reset Validation flag, could carry over from last game
-        // this.Validation = false;
+        
 
     }
 
