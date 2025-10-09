@@ -40,7 +40,7 @@ public class Dictionary_Bug {
 
     public boolean isValidWord(String word) {
 
-        for (int i = 0; i <= this.words.size(); i++) { // BUG 10: off-by-one — causes IndexOutOfBoundsException
+        for (int i = 0; i <= this.words.size(); i++) { 
 
             if (this.words.get(i).equals(word)) {
 
