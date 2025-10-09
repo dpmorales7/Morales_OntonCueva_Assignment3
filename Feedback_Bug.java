@@ -6,7 +6,6 @@ public class Feedback_Bug {
     public Feedback_Bug(String guess, String secretWord) {
         this.guess = guess;
 
-        // BUG 9: no null check for secretWord — crashes if null
         this.pattern = getPattern(guess, secretWord);
 
         this.Validation = isCorrect(pattern);
